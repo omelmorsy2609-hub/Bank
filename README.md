@@ -1,7 +1,9 @@
 A lightweight, console-based Bank Management & Transaction System built using modern C++. The system features full CRUD capabilities for client profiles alongside automated file-based state persistence and accurate mathematical handling of basic financial deposits and withdrawals.
 
 🚀 Features
+
 👤 Client Management
+
 Show Client List: Displays a beautifully formatted tabular layout of all registered clients using exact visual padding rules.
 
 Add New Client: Generates a new profile validation step to ensure account numbers are uniquely registered and cannot be duplicated.
