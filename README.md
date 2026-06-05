@@ -1,50 +1,24 @@
-A lightweight, console-based Bank Management & Transaction System built using modern C++. The system features full CRUD capabilities for client profiles alongside automated file-based state persistence and accurate mathematical handling of basic financial deposits and withdrawals.
+Bank & User Management System (CLI)
 
-🚀 Features
+A robust, console-based banking application built in modern C++. The system features a dual-layer architecture separating Client Banking Operations (deposits, withdrawals, balances) and a User Administration Subsystem controlled via an explicit, low-level bitwise masking permission architecture.
 
-👤 Client Management
+🚀 Features. 
 
-Show Client List: Displays a beautifully formatted tabular layout of all registered clients using exact visual padding rules.
+Client Management SystemView Client Ledger: Displays a formatted structural table listing client accounts, pin codes, names, contact numbers, and real-time balances using explicit column-width alignments (std::setw).
+Secure Registration: Registers new clients with real-time collision detection preventing duplicate account numbers.
+Cascaded Deletion: Implements a two-pass mark-and-sweep deletion protocol, preventing structural fragmentation of records in flat-file configurations.
+Dynamic Modifiers: Updates existing structural fields on confirmed targets seamlessly.
+Transaction EngineDeposit Pipeline: Modifies targeted currency balances with automated system confirmation.
+Validated Withdrawals: Safely checks requests against current balances to prevent overdraft and invalid balances.
+Aggregate Reporting: Dynamically computes total financial value distributed across all active ledger records.
+Secure Login Gateway: Authenticates operations against an external file repository.
+Bitwise Permission Engine: Permissions are evaluated using lightning-fast bitwise masking operations, evaluating authorization constraints in a single CPU clock cycle.
 
-Add New Client: Generates a new profile validation step to ensure account numbers are uniquely registered and cannot be duplicated.
+🛠️ System Architecture & Bitmask Scheme
 
-Delete Client: Features a distinct "two-step" deletion confirmation workflow. Data is logically flagged before being permanently trimmed from the raw storage file.
+The access control model relies on specific bit offsets mapping directly to functions in the main menu. When checking if a user has clearance, the system uses a bitwise AND operations (&) to isolate relevant bits.
 
-Update Client Info: Allows secure overrides for credentials, names, and contact details without changing underlying system identity attributes.
+📂 Database Specifications
 
-Find Client: Direct-search profile mapping targeting an explicit identifier.
-
-💸 Transaction Sub-System
-Deposit Module: Updates single client state values with automatic file flushing updates.
-
-Withdrawal Engine: Built-in balance threshold validation. Prevents account values from dropping below zero.
-
-Total Balances Mapping: Aggregates and calculates total system capital assets instantly across the entire registered user database.
-
-🛠️ System Architecture & Data Flow
-Data is dynamically converted using custom tokenization parsing engines to translate structured memory objects into flat file records and vice versa.
-
-Data Storage Protocol
-All operational persistence maps directly to a file named clients.txt. Data fields are safely isolated using a clear structural separator token (#//#).
-
-Storage Record Layout:
-
-AccountNo#//#PinCode#//#Client Name#//#Phone#//#Balance
-
-Flow Infrastructure Model
-The application relies on highly cohesive vector state arrays, processing inputs from standard streams directly down into system functions:
-
-[ Console UI Inputs ]
-         │
-         ▼
-[ Parsing Layer (mysplit / recordToLine) ]
-         │
-         ▼
-[ In-Memory Cache (std::vector<stClient>) ]
-         │
-         ▼
-[ File Engine Data Persistence (clients.txt) ]
-📋 Technical Requirements
-Compiler Standard: C++11, C++14, or C++17 compatible compiler (GCC, Clang, or MSVC).
-
-Operating System Platform: Optimal compatibility with Windows Console environments (utilizes specific system("cls") display clearing buffers).
+The system reads and writes to two flat-file databases using a high-density string delimiter (#//#). clients.txt Records are serialized in the following layout:AccountNo#//#PinCode#//#Client Name#//#PhoneNumber#//#CurrentBalance
+users.txt System operator access controls are tracked as follows:Username#//#Password#//#Permission.
